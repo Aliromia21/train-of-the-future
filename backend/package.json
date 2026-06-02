@@ -1,0 +1,45 @@
+{
+  "name": "train-of-the-future-backend",
+  "version": "1.0.0",
+  "description": "Train fleet monitoring backend — Node.js + TypeScript + SQL Server",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "lint": "eslint src --ext .ts",
+    "test": "jest --runInBand",
+    "test:coverage": "jest --coverage --runInBand"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mssql": "^10.0.4",
+    "ws": "^8.16.0",
+    "zod": "^3.22.4",
+    "dotenv": "^16.4.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/ws": "^8.5.10",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.6",
+    "@types/cors": "^2.8.17",
+    "@types/morgan": "^1.9.9",
+    "@types/jest": "^29.5.11",
+    "@types/supertest": "^6.0.2",
+    "@types/node": "^20.11.5",
+    "typescript": "^5.3.3",
+    "ts-node-dev": "^2.0.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "supertest": "^6.3.4",
+    "@typescript-eslint/eslint-plugin": "^6.19.1",
+    "@typescript-eslint/parser": "^6.19.1",
+    "eslint": "^8.56.0"
+  }
+}

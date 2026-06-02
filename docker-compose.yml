@@ -1,0 +1,63 @@
+services:
+  # ── SQL Server ──────
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: train-db
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "TrainPass123!"
+      MSSQL_PID: Developer
+    ports:
+      - "1433:1433"
+    volumes:
+      - db-data:/var/opt/mssql
+    healthcheck:
+      test: ["CMD", "/opt/mssql-tools18/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "TrainPass123!", "-Q", "SELECT 1", "-No"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  # ── Backend 
+  backend:
+    build:
+      context: ./backend
+      target: production
+    container_name: train-backend
+    env_file: ./backend/.env
+    environment:
+      DB_HOST: db
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/api/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── Frontend 
+  frontend:
+    build:
+      context: ./frontend
+      target: production
+    container_name: train-frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+
+  # ── Simulator 
+  simulator:
+    build: ./simulator
+    container_name: train-simulator
+    environment:
+      API_URL: http://backend:3000/api/telemetry
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: on-failure
+
+volumes:
+  db-data:
