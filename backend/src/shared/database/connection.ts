@@ -1,15 +1,16 @@
 import sql from 'mssql';
-import { config } from '../config/env';
 
 const poolConfig: sql.config = {
-  server: config.database.host,
-  port: config.database.port,
-  database: config.database.name,
-  user: config.database.user,
-  password: config.database.password,
+  server: 'localhost',
+  port: 1433,
+  database: 'master',
+  user: 'sa',
+  password: 'Train2026db',
   options: {
     encrypt: false,
     trustServerCertificate: true,
+    enableArithAbort: true,
+    connectTimeout: 30000,
   },
   pool: {
     max: 10,

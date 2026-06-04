@@ -4,17 +4,17 @@ dotenv.config();
 
 export const config = {
   server: {
-    port: parseInt(process.env.PORT ?? '3000', 10),
-    nodeEnv: process.env.NODE_ENV ?? 'development',
+    port: 3000,
+    nodeEnv: 'development',
   },
   database: {
-    host: process.env.DB_HOST ?? 'localhost',
-    port: parseInt(process.env.DB_PORT ?? '1433', 10),
-    name: process.env.DB_NAME ?? 'TrainOfTheFuture',
-    user: process.env.DB_USER ?? 'sa',
-    password: process.env.DB_PASSWORD ?? 'TrainPass123!',
-  },
+  host: '127.0.0.1',
+  port: 1433,
+  name: 'master',
+  user: 'sa',
+  password: 'Train2026db',
+},
   ws: {
-    port: parseInt(process.env.WS_PORT ?? '3001', 10),
+    port: 3001,
   },
 } as const;
