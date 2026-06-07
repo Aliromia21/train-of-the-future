@@ -6,6 +6,7 @@ import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import { errorHandler } from './shared/middleware/errorHandler';
 import { notFound } from './shared/middleware/notFound';
+import trainsRouter from './modules/trains/trainRoutes';
 
 const app = express();
 
@@ -53,8 +54,8 @@ app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// ─── Routes (to be added in next commits) 
-// app.use('/api/trains', trainsRouter);
+// ─── Routes 
+app.use('/api/trains', trainsRouter);
 // app.use('/api/telemetry', telemetryRouter);
 // app.use('/api/alerts', alertsRouter);
 // app.use('/api/reports', analyticsRouter);

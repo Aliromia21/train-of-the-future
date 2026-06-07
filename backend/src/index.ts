@@ -4,6 +4,12 @@ import { getPool, closePool } from './shared/database/connection';
 
 async function bootstrap(): Promise<void> {
   // Connect to DB
+   console.log('DB CONFIG:', {
+    host: config.database.host,
+    port: config.database.port,
+    user: config.database.user,
+    password: config.database.password,
+  });
   await getPool();
 
   // Start HTTP server
