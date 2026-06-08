@@ -216,13 +216,13 @@ Database rows use snake_case (`train_number`, `max_speed`). API responses use ca
 
 | Module | Status | Description |
 |--------|--------|-------------|
-| **Trains CRUD** | ✅ Done | Full fleet management REST API with SQL Server |
-| **Telemetry** | 🔜 Planned | Ingest live sensor data (speed, GPS, WiFi status, passenger count) |
-| **WebSocket** | 🔜 Planned | Real-time fleet updates pushed to connected clients |
-| **Alerts** | 🔜 Planned | Threshold-based alerting (offline trains, speed violations, WiFi degradation) |
-| **Analytics** | 🔜 Planned | Daily statistics, uptime reports, fleet performance dashboards |
-| **Python Simulator** | 🔜 Planned | Generates realistic telemetry streams for development and load testing |
-| **Authentication** | 🔜 Planned | JWT-based API access control with role-based permissions |
+| **Trains CRUD** | Done | Full fleet management REST API with SQL Server |
+| **Telemetry** | Planned | Ingest live sensor data (speed, GPS, WiFi status, passenger count) |
+| **WebSocket** | Planned | Real-time fleet updates pushed to connected clients |
+| **Alerts** | Planned | Threshold-based alerting (offline trains, speed violations, WiFi degradation) |
+| **Analytics** | Planned | Daily statistics, uptime reports, fleet performance dashboards |
+| **Python Simulator** | Planned | Generates realistic telemetry streams for development and load testing |
+| **Authentication** | Planned | JWT-based API access control with role-based permissions |
 
 ---
 
