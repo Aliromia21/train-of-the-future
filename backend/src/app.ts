@@ -6,15 +6,23 @@ import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import { errorHandler } from './shared/middleware/errorHandler';
 import { notFound } from './shared/middleware/notFound';
+import {
+  globalRateLimiter,
+  writeRateLimiterMiddleware,
+} from './shared/middleware/rateLimiter';
 import trainsRouter from './modules/trains/trainRoutes';
 
 const app = express();
 
+const ALLOWED_ORIGINS = ['http://localhost:8080', 'http://localhost:3000'];
+
 // ─── Core middleware 
 app.use(helmet());
-app.use(cors());
+app.use(cors({ origin: ALLOWED_ORIGINS }));
+app.use(globalRateLimiter);
 app.use(morgan('dev'));
-app.use(express.json());
+app.use(express.json({ limit: '10kb' }));
+app.use(writeRateLimiterMiddleware);
 
 // ─── Swagger 
 const swaggerSpec = swaggerJsdoc({
