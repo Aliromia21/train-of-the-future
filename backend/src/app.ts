@@ -11,7 +11,7 @@ import {
   writeRateLimiterMiddleware,
 } from './shared/middleware/rateLimiter';
 import trainsRouter from './modules/trains/trainRoutes';
-import telemetryRouter from './modules/telemetry/telemetry.controller'; 
+import telemetryRouter from './modules/telemetry/telemetry.controller';  
 
 
 const app = express();
