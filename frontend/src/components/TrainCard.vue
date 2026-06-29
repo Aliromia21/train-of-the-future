@@ -7,7 +7,7 @@
     <div class="card-body">
       <h3>{{ train.name }}</h3>
       <p class="line">{{ train.line }}</p>
-      <p class="speed"> Max {{ train.maxSpeed }} km/h</p>
+      <p class="speed">Max {{ train.maxSpeed }} km/h</p>
     </div>
   </div>
 </template>
@@ -24,12 +24,6 @@ const statusClass = computed(() => ({
   'status-maintenance': props.train.status === 'MAINTENANCE',
   'status-inactive': props.train.status === 'INACTIVE',
 }));
-</script>
-
-<script setup lang="ts">
-import { computed } from 'vue';
-
-const props = defineProps<{ train: Train }>();
 </script>
 
 <style scoped>

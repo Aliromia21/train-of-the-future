@@ -27,14 +27,13 @@ const loading = ref(true);
 const error = ref<string | null>(null);
 
 onMounted(async () => {
-  try {
-    const response = await trainsApi.getAll();
-    trains.value = response.data.data;
-  } catch (err) {
-    error.value = 'Failed to load fleet data';
-  } finally {
-    loading.value = false;
-  }
+  trains.value = [
+    { id: 1, trainNumber: 'ICE-101', name: 'Hannover Express', line: 'Hannover–Berlin', maxSpeed: 300, status: 'ONLINE', createdAt: new Date().toISOString() },
+    { id: 2, trainNumber: 'ICE-102', name: 'Hildesheim Flyer', line: 'Hannover–Berlin', maxSpeed: 300, status: 'OFFLINE', createdAt: new Date().toISOString() },
+    { id: 3, trainNumber: 'IC-201', name: 'Niedersachsen Link', line: 'Hannover–Braunschweig', maxSpeed: 200, status: 'MAINTENANCE', createdAt: new Date().toISOString() },
+    { id: 4, trainNumber: 'RE-301', name: 'Leine Valley', line: 'Hannover–Hildesheim', maxSpeed: 160, status: 'INACTIVE', createdAt: new Date().toISOString() },
+  ];
+  loading.value = false;
 });
 </script>
 
