@@ -11,6 +11,8 @@ import {
   writeRateLimiterMiddleware,
 } from './shared/middleware/rateLimiter';
 import trainsRouter from './modules/trains/trainRoutes';
+import telemetryRouter from './modules/telemetry/telemetry.controller'; 
+
 
 const app = express();
 
@@ -64,7 +66,7 @@ app.get('/api/health', (_req, res) => {
 
 // ─── Routes 
 app.use('/api/trains', trainsRouter);
-// app.use('/api/telemetry', telemetryRouter);
+app.use('/api/telemetry', telemetryRouter);
 // app.use('/api/alerts', alertsRouter);
 // app.use('/api/reports', analyticsRouter);
 
