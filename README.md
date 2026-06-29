@@ -217,7 +217,7 @@ Database rows use snake_case (`train_number`, `max_speed`). API responses use ca
 | Module | Status | Description |
 |--------|--------|-------------|
 | **Trains CRUD** |  Done | Full fleet management REST API with SQL Server |
-| **Telemetry** |  Planned | Ingest live sensor data (speed, GPS, WiFi status, passenger count) |
+| **Telemetry** |  Done | Ingest live sensor data (speed, GPS, WiFi status, passenger count) |
 | **WebSocket** |  Planned | Real-time fleet updates pushed to connected clients |
 | **Alerts** |  Planned | Threshold-based alerting (offline trains, speed violations, WiFi degradation) |
 | **Analytics** |Planned | Daily statistics, uptime reports, fleet performance dashboards |
