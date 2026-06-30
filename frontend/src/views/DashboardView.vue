@@ -56,13 +56,13 @@ onMounted(async () => {
   justify-content: space-between;
   margin-bottom: 2rem;
 }
-h1 { font-size: 1.5rem; color: #06b6d4; margin: 0; }
+h1 { font-size: 1.5rem; color: var(--accent-cyan); margin: 0; }
 .header-right { display: flex; align-items: center; gap: 1rem; }
-.ws-indicator { font-size: 0.85rem; color: #ef4444; font-weight: 500; }
-.ws-indicator.connected { color: #22c55e; }
+.ws-indicator { font-size: 0.85rem; color: var(--accent-red); font-weight: 500; }
+.ws-indicator.connected { color: var(--accent-green); }
 .train-count {
-  background: #1e2d47;
-  color: #94a3b8;
+  background: var(--surface-700);
+  color: var(--text-muted);
   padding: 2px 10px;
   border-radius: 999px;
   font-size: 0.85rem;
@@ -73,6 +73,6 @@ h1 { font-size: 1.5rem; color: #06b6d4; margin: 0; }
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1rem;
 }
-.state-message { color: #94a3b8; text-align: center; margin-top: 4rem; }
-.state-message.error { color: #ef4444; }
+.state-message { color: var(--text-muted); text-align: center; margin-top: 4rem; }
+.state-message.error { color: var(--accent-red); }
 </style>

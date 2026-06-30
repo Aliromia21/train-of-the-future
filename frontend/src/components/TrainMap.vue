@@ -36,14 +36,13 @@ function createIcon(status: string): L.DivIcon {
   });
 }
 
-// reference points
 const STATIONS = [
-  { name: 'Hannover Hbf',      lat: 52.3764, lon: 9.7415  },
-  { name: 'Hildesheim Hbf',    lat: 52.1530, lon: 9.9509  },
-  { name: 'Braunschweig Hbf',  lat: 52.2524, lon: 10.5354 },
-  { name: 'Wolfsburg Hbf',     lat: 52.4279, lon: 10.7873 },
-  { name: 'Magdeburg Hbf',     lat: 52.1308, lon: 11.6265 },
-  { name: 'Berlin Hbf',        lat: 52.5251, lon: 13.3694 },
+  { name: 'Hannover Hbf',     lat: 52.3764, lon: 9.7415  },
+  { name: 'Hildesheim Hbf',   lat: 52.1530, lon: 9.9509  },
+  { name: 'Braunschweig Hbf', lat: 52.2524, lon: 10.5354 },
+  { name: 'Wolfsburg Hbf',    lat: 52.4279, lon: 10.7873 },
+  { name: 'Magdeburg Hbf',    lat: 52.1308, lon: 11.6265 },
+  { name: 'Berlin Hbf',       lat: 52.5251, lon: 13.3694 },
 ];
 
 onMounted(() => {
@@ -55,7 +54,6 @@ onMounted(() => {
     attribution: '© OpenStreetMap contributors',
   }).addTo(map);
 
-  // Adding station markers
   STATIONS.forEach((station) => {
     L.circleMarker([station.lat, station.lon], {
       radius: 5,
@@ -74,14 +72,12 @@ onUnmounted(() => {
   map = null;
 });
 
-// Watching for train changes and update markers
 watch(
   () => props.trains,
   (trains) => {
     if (!map) return;
 
     trains.forEach((train) => {
-      // Mocking positions based on train id for now
       const station = STATIONS[train.id % STATIONS.length];
       const lat = station.lat + (Math.random() - 0.5) * 0.1;
       const lon = station.lon + (Math.random() - 0.5) * 0.1;
@@ -113,7 +109,7 @@ watch(
   width: 100%;
   height: 400px;
   border-radius: 12px;
-  border: 1px solid #1e2d47;
+  border: 1px solid var(--surface-700);
   overflow: hidden;
 }
 </style>

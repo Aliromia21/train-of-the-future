@@ -1,0 +1,20 @@
+:root {
+  --surface-900: #0a0f1a;
+  --surface-800: #0f1728;
+  --surface-700: #1e2d47;
+  --accent-cyan: #06b6d4;
+  --accent-blue: #3b82f6;
+  --accent-green: #22c55e;
+  --accent-red: #ef4444;
+  --accent-amber: #f59e0b;
+  --text-primary: #f1f5f9;
+  --text-muted: #94a3b8;
+  --status-online-bg: #14532d;
+  --status-online-text: #22c55e;
+  --status-offline-bg: #450a0a;
+  --status-offline-text: #ef4444;
+  --status-maintenance-bg: #451a03;
+  --status-maintenance-text: #f59e0b;
+  --status-inactive-bg: #1e2d47;
+  --status-inactive-text: #94a3b8;
+}
