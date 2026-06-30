@@ -10,6 +10,7 @@
       </div>
     </div>
 
+    <AlertPanel :last-event="lastEvent" />
     <TrainMap :trains="trains" class="map-section" />
 
     <div v-if="loading" class="state-message">Loading fleet data...</div>
@@ -28,6 +29,7 @@
 import { ref, onMounted } from 'vue';
 import TrainCard from '../components/TrainCard.vue';
 import TrainMap from '../components/TrainMap.vue';
+import AlertPanel from '../components/AlertPanel.vue';
 import { type Train } from '../services/api';
 import { useWebSocket } from '../composables/useWebSocket';
 
@@ -35,7 +37,7 @@ const trains = ref<Train[]>([]);
 const loading = ref(true);
 const error = ref<string | null>(null);
 
-const { isConnected } = useWebSocket('ws://localhost:3001');
+const { isConnected, lastEvent } = useWebSocket('ws://localhost:3001');
 
 onMounted(async () => {
   trains.value = [

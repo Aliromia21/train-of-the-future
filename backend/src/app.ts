@@ -12,6 +12,7 @@ import {
 } from './shared/middleware/rateLimiter';
 import trainsRouter from './modules/trains/trainRoutes';
 import telemetryRouter from './modules/telemetry/telemetry.controller';  
+import { realtimeService } from './modules/realtime/realtime.service';
 
 
 const app = express();
@@ -62,6 +63,20 @@ app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
  */
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
+app.get('/api/test-alert', (_req, res) => {
+  realtimeService.broadcast({
+    type: 'ALERT',
+    payload: {
+      trainId: 1,
+      type: 'SPEED_VIOLATION',
+      severity: 'CRITICAL',
+      message: 'Train ICE-101 speed violation — 350 km/h exceeds limit',
+    },
+    timestamp: new Date().toISOString(),
+  });
+  res.json({ success: true });
 });
 
 // ─── Routes 
