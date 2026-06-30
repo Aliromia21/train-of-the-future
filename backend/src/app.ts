@@ -13,6 +13,7 @@ import {
 import trainsRouter from './modules/trains/trainRoutes';
 import telemetryRouter from './modules/telemetry/telemetry.controller';  
 import { realtimeService } from './modules/realtime/realtime.service';
+import analyticsRouter from './modules/analytics/analytics.controller';
 
 
 const app = express();
@@ -49,6 +50,8 @@ const swaggerSpec = swaggerJsdoc({
 });
 
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use('/api/reports', analyticsRouter);
+app.use('/api/analytics', analyticsRouter);
 
 // ─── Health check 
 /**
