@@ -10,6 +10,8 @@
       </div>
     </div>
 
+    <TrainMap :trains="trains" class="map-section" />
+
     <div v-if="loading" class="state-message">Loading fleet data...</div>
     <div v-else-if="error" class="state-message error">{{ error }}</div>
     <div v-else class="train-grid">
@@ -25,7 +27,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import TrainCard from '../components/TrainCard.vue';
-import { trainsApi, type Train } from '../services/api';
+import TrainMap from '../components/TrainMap.vue';
+import { type Train } from '../services/api';
 import { useWebSocket } from '../composables/useWebSocket';
 
 const trains = ref<Train[]>([]);
@@ -55,11 +58,7 @@ onMounted(async () => {
 }
 h1 { font-size: 1.5rem; color: #06b6d4; margin: 0; }
 .header-right { display: flex; align-items: center; gap: 1rem; }
-.ws-indicator {
-  font-size: 0.85rem;
-  color: #ef4444;
-  font-weight: 500;
-}
+.ws-indicator { font-size: 0.85rem; color: #ef4444; font-weight: 500; }
 .ws-indicator.connected { color: #22c55e; }
 .train-count {
   background: #1e2d47;
@@ -68,6 +67,7 @@ h1 { font-size: 1.5rem; color: #06b6d4; margin: 0; }
   border-radius: 999px;
   font-size: 0.85rem;
 }
+.map-section { margin-bottom: 2rem; }
 .train-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
