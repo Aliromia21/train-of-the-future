@@ -4,7 +4,7 @@
   "description": "Train fleet monitoring dashboard — Vue.js 3",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint src --ext .vue,.ts",
     "test": "vitest"

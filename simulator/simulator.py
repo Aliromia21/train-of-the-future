@@ -3,7 +3,7 @@ Train of the Future — Python Simulator
 Simulates 10 trains moving between German stations, sending telemetry every 5s.
 Full implementation: Week 2, Day 8.
 """
-
+import os
 import time
 import json
 import random
@@ -11,7 +11,7 @@ import threading
 import requests
 from typing import TypedDict
 
-API_URL = "http://localhost:3000/api/telemetry"
+API_URL = os.environ.get("API_URL", "http://backend:3000/api/telemetry")
 
 # German stations on Hannover–Berlin route
 STATIONS = [

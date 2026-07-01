@@ -1,33 +1,40 @@
 services:
-  # ── SQL Server ──────
+  # ── SQL Server ────────────────────────────────────────────────
   db:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: train-db
     environment:
       ACCEPT_EULA: "Y"
-      SA_PASSWORD: "TrainPass123!"
+      MSSQL_SA_PASSWORD: "Train2026db"
       MSSQL_PID: Developer
     ports:
       - "1433:1433"
     volumes:
       - db-data:/var/opt/mssql
     healthcheck:
-      test: ["CMD", "/opt/mssql-tools18/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "TrainPass123!", "-Q", "SELECT 1", "-No"]
+      test: ["CMD", "/opt/mssql-tools18/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "Train2026db", "-Q", "SELECT 1", "-No"]
       interval: 10s
       timeout: 5s
       retries: 10
 
-  # ── Backend 
+  # ── Backend ───────────────────────────────────────────────────
   backend:
     build:
       context: ./backend
       target: production
     container_name: train-backend
-    env_file: ./backend/.env
     environment:
+      PORT: 3000
+      NODE_ENV: production
       DB_HOST: db
+      DB_PORT: 1433
+      DB_NAME: TrainOfTheFuture
+      DB_USER: sa
+      DB_PASSWORD: Train2026db
+      WS_PORT: 3001
     ports:
       - "3000:3000"
+      - "3001:3001"
     depends_on:
       db:
         condition: service_healthy
@@ -37,7 +44,7 @@ services:
       timeout: 5s
       retries: 5
 
-  # ── Frontend 
+  # ── Frontend ──────────────────────────────────────────────────
   frontend:
     build:
       context: ./frontend
@@ -48,7 +55,7 @@ services:
     depends_on:
       - backend
 
-  # ── Simulator 
+  # ── Simulator ─────────────────────────────────────────────────
   simulator:
     build: ./simulator
     container_name: train-simulator

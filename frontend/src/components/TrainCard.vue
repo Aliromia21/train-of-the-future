@@ -1,5 +1,5 @@
 <template>
-  <div class="train-card" :class="statusClass">
+  <div class="train-card" :class="statusClass" @click="router.push(`/trains/${train.id}`)">
     <div class="card-header">
       <span class="train-number">{{ train.trainNumber }}</span>
       <span class="status-badge">{{ train.status }}</span>
@@ -14,9 +14,11 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
+import { useRouter } from 'vue-router';
 import type { Train } from '../services/api';
 
 const props = defineProps<{ train: Train }>();
+const router = useRouter();
 
 const statusClass = computed(() => ({
   'status-online': props.train.status === 'ONLINE',
@@ -33,6 +35,7 @@ const statusClass = computed(() => ({
   border-radius: 12px;
   padding: 1.2rem;
   transition: border-color 0.2s;
+  cursor: pointer;
 }
 .train-card:hover { border-color: var(--accent-blue); }
 .card-header {
