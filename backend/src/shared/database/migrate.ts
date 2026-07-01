@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { getPool, closePool, sql } from './connection';
+import { getPool, closePool } from './connection';
 
 async function runMigration(): Promise<void> {
   console.log('Running migrations...');
