@@ -18,11 +18,11 @@ export const globalRateLimiter = rateLimit({
 });
 
 /**
- * Stricter rate limiter for mutating HTTP methods — 10 requests per minute per IP.
+ * Stricter rate limiter for mutating HTTP methods 
  */
 export const writeRateLimiter = rateLimit({
   windowMs: 60 * 1000,
-  max: 10,
+  max: 200,  
   standardHeaders: true,
   legacyHeaders: false,
   message: RATE_LIMIT_MESSAGE,
@@ -32,7 +32,7 @@ export const writeRateLimiter = rateLimit({
 const WRITE_METHODS = new Set(['POST', 'PUT', 'DELETE', 'PATCH']);
 
 /**
- * Applies write rate limiting only to POST, PUT, DELETE, and PATCH requests.
+ * Applies only to POST, PUT, DELETE, and PATCH requests.
  */
 export function writeRateLimiterMiddleware(
   req: import('express').Request,
