@@ -127,8 +127,8 @@ everything is in one process, so Node.js EventEmitter is simpler and faster. If 
 | Trains REST API | Done | Full CRUD with Swagger documentation |
 | Telemetry Ingestion | Done | MERGE upsert (current state) + append-only log (history) |
 | WebSocket Live Updates | Done | Server pushes events to all connected clients |
-| Alert Engine | Done | Observer pattern — OFFLINE, WIFI_DEGRADED, SPEED_VIOLATION rules |
-| Alert Panel | Done | Real-time alert display with severity badges |
+| Alert Engine | Done | Observer pattern — persists OFFLINE, WIFI_DEGRADED, and SPEED_VIOLATION alerts, skipping duplicates |
+| Alert Panel | Done | Open alerts from the API, live WebSocket updates, and resolve |
 | Analytics Endpoints | Done | Fleet summary + daily statistics |
 | Statistics Dashboard | Done | Chart.js — status distribution + speed charts |
 | Python Simulator | Done | 10 concurrent trains, tunnel zones, offline queue with flush |
@@ -158,6 +158,8 @@ everything is in one process, so Node.js EventEmitter is simpler and faster. If 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | `POST` | `/api/telemetry` | Receive telemetry from simulator |
+| `GET` | `/api/alerts` | List alerts (status open, resolved, or all; optional trainId) |
+| `PATCH` | `/api/alerts/:id/resolve` | Resolve an open alert |
 | `GET` | `/api/analytics/fleet` | Current fleet summary |
 | `GET` | `/api/reports/daily?date=YYYY-MM-DD` | Daily statistics |
 

@@ -14,6 +14,7 @@ import trainsRouter from './modules/trains/trainRoutes';
 import telemetryRouter from './modules/telemetry/telemetry.controller';  
 import { realtimeService } from './modules/realtime/realtime.service';
 import analyticsRouter from './modules/analytics/analytics.controller';
+import alertsRouter from './modules/alerts/alert.routes';
 
 
 const app = express();
@@ -85,8 +86,7 @@ app.get('/api/test-alert', (_req, res) => {
 // ─── Routes 
 app.use('/api/trains', trainsRouter);
 app.use('/api/telemetry', telemetryRouter);
-// app.use('/api/alerts', alertsRouter);
-// app.use('/api/reports', analyticsRouter);
+app.use('/api/alerts', alertsRouter);
 
 // ─── Error handling 
 app.use(notFound);

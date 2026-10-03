@@ -19,21 +19,25 @@ async function runMigration(): Promise<void> {
   // Switch to TrainOfTheFuture
   await pool.request().query('USE TrainOfTheFuture');
 
-  // Read and run migration file
-  const migrationPath = path.join(__dirname, 'migrations', '001_init.sql');
-  const migrationSQL = fs.readFileSync(migrationPath, 'utf-8');
+  const migrationsDir = path.join(__dirname, 'migrations');
+  const files = fs
+    .readdirSync(migrationsDir)
+    .filter((file) => file.endsWith('.sql'))
+    .sort();
 
-  // Split on GO statements 
-  const batches = migrationSQL
-    .split(/^\s*GO\s*$/im)
-    .map(b => b.trim())
-    .filter(b => b.length > 0);
+  for (const file of files) {
+    const migrationSQL = fs.readFileSync(path.join(migrationsDir, file), 'utf-8');
+    const batches = migrationSQL
+      .split(/^\s*GO\s*$/im)
+      .map((batch) => batch.trim())
+      .filter((batch) => batch.length > 0);
 
-  for (const batch of batches) {
-    await pool.request().query(batch);
+    for (const batch of batches) {
+      await pool.request().query(batch);
+    }
+
+    console.log(`✓ Migration ${file} complete`);
   }
-
-  console.log('✓ Migration 001_init.sql complete');
   await closePool();
 }
 
