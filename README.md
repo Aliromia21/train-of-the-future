@@ -158,6 +158,8 @@ everything is in one process, so Node.js EventEmitter is simpler and faster. If 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | `POST` | `/api/telemetry` | Receive telemetry from simulator |
+| `GET` | `/api/alerts` | List alerts (`status=open\|resolved\|all`, optional `trainId`) |
+| `PATCH` | `/api/alerts/:id/resolve` | Resolve an open alert |
 | `GET` | `/api/analytics/fleet` | Current fleet summary |
 | `GET` | `/api/reports/daily?date=YYYY-MM-DD` | Daily statistics |
 
